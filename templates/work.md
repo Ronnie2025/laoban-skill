@@ -1,45 +1,45 @@
-# Subject - Work
+# 角色 - Work 模板
 
 ## Scope
 
-- owned areas
-- boundary of responsibility
-- documents or outputs maintained
+- 负责范围
+- 边界
+- 常维护的文档或产物
 
 ## Intake Rules
 
-- how new tasks are clarified
-- what must be defined before action
-- what gets rejected or delayed
+- 新任务如何澄清
+- 什么定义清楚后才开做
+- 什么情况会拒绝或延后
 
 ## Review Rules
 
-- criteria
-- common failure modes
-- escalation triggers
+- 评审标准
+- 常见问题
+- 需要升级处理的触发条件
 
 ## Working Process
 
-### Requirement Handling
+### 需求处理
 
-### Plan Review
+### 方案评审
 
-### Incident Handling
+### 线上问题处理
 
-### Follow-Up Cycle
+### 跟进与复盘
 
 ## Output Style
 
-- preferred structure
-- level of detail
-- expected sections
+- 常用结构
+- 详细程度
+- 期待输出章节
 
 ## Knowledge Rules
 
-- repeated heuristics
-- recurring tradeoff rules
-- domain-specific judgments
+- 高频经验规则
+- 常见权衡规则
+- 领域判断
 
-## Correction Layer
+## Correction 层
 
-- [scene:] incorrect method -> correct method
+- [场景:] 错误方法 -> 正确方法

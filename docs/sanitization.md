@@ -1,81 +1,77 @@
-# Sanitization
+# 脱敏规则
 
-Sanitization is mandatory before any public release.
+任何公开发布之前，都必须先做脱敏。
 
-## Redaction Targets
+## 必须处理的对象
 
-Replace or remove:
+以下信息要么替换，要么删除：
 
-- person names
-- company names
-- department names
-- product names
-- customer names
-- project codenames
-- private URLs
-- local file paths
-- exact numbers when they are sensitive
-- internal shorthand that only makes sense inside one org
+- 人名
+- 公司名
+- 部门名
+- 产品名
+- 客户名
+- 项目代号
+- 私有 URL
+- 本地文件路径
+- 精确敏感数字
+- 只在某个组织内部成立的黑话和缩写
 
-## Replacement Strategy
+## 替换策略
 
-Use consistent placeholders when context matters:
+如果上下文还需要保留，用稳定占位符：
 
-- `Manager A`
-- `Peer B`
-- `Client C`
-- `Product X`
-- `System Y`
-- `Workspace Z`
+- `老板A`
+- `同事B`
+- `客户C`
+- `产品X`
+- `系统Y`
+- `工作区Z`
 
-Use generic descriptions when the specific identity is not needed:
+如果具体身份不重要，直接写成泛化描述：
 
-- `an internal review process`
-- `a customer-facing workflow`
-- `a production escalation meeting`
+- `一次内部评审流程`
+- `一个面向客户的流程`
+- `一次线上问题升级会议`
 
-## Preserve Function, Remove Identity
+## 保留功能，删除身份
 
-Good sanitization keeps method and deletes traceability.
+好的脱敏，不是把内容写空，而是把“方法”留下，把“身份指纹”删掉。
 
-### Bad
+### 不好的写法
 
-- "When a named executive reviews Product X pricing requests, he says ..."
-- "/absolute/private/path/notes/..."
+- “某位具名老板在评审某个具名产品定价需求时会说……”
+- “/absolute/private/path/notes/…”
 
-### Good
+### 更好的写法
 
-- "When the subject reviews pricing-related requests, the pattern is to ask for scope, boundary, and monetization logic first."
-- "private working directory"
+- “当该角色评审定价相关需求时，通常会先追问范围、边界和商业逻辑。”
+- “私有工作目录”
 
-## Numbers
+## 数字处理
 
-Replace exact values when disclosure is risky:
+如果数字敏感，就保留相对关系，不保留精确值：
 
-- `17 customers` -> `a small but real customer set`
-- `¥120,000` -> `a meaningful commercial amount`
+- `17 个客户` -> `一批真实但规模不大的客户`
+- `120000` -> `一笔有明确商业意义的金额`
 
-Keep exact numbers only when they are non-sensitive and structurally important to the method.
+如果数字对方法本身很重要，而且不敏感，可以保留。
 
-## Quotes
+## 原话处理
 
-Quotes are high-risk identifiers.
+原话是最容易暴露人物身份的部分之一。
 
-Public export should:
+公开版建议：
 
-- prefer paraphrase over direct quote
-- keep only generic, reusable phrasing
-- remove distinctive wording that can fingerprint the person
+- 优先用转述，不直接引用
+- 只保留可泛化的表达习惯
+- 删除高度可识别的特殊措辞
 
-## Safety Check Before Publishing
+## 发布前检查
 
-Run at least one keyword scan against:
+建议至少做两轮检查：
 
-- the subject's name
-- company names
-- client names
-- product names
-- usernames
-- filesystem roots
-
-Then do one manual pass to catch indirect identifiers.
+1. 关键词扫描
+   扫人名、公司名、客户名、产品名、用户名、本地路径根目录。
+2. 人工复核
+   看有没有间接暴露身份的信息，比如非常独特的例子、语气或口号。

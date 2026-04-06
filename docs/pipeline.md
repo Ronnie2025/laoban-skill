@@ -1,161 +1,165 @@
-# Pipeline
+# 流程设计
 
-This pipeline is designed for evidence-backed persona/work skill building.
+这套流程用于把原始人物材料提炼成有证据基础、可持续更新的 Persona / Work Skill。
 
 ## 1. Intake
 
-Input sources may include:
+原始输入可以包括：
 
-- meeting transcripts
-- chat logs
-- emails
-- docs
-- planning notes
-- code reviews
+- 会议转写
+- 聊天记录
+- 邮件
+- 文档
+- 计划记录
+- Code Review 记录
 
-For each source, record:
+对每份材料，至少记录：
 
-- source type
-- date
-- confidence level
-- whether it is mostly persona, mostly work, or mixed
-- whether it contains sensitive identifiers
+- 来源类型
+- 时间
+- 置信度
+- 偏 Persona、偏 Work，还是混合
+- 是否包含敏感身份信息
 
-Do not merge everything immediately. Keep source boundaries intact.
+第一步不要急着把所有东西混在一起，先保留来源边界。
 
 ## 2. Evidence Extraction
 
-Extract only what the source can support.
+只抽取材料真正支持的内容，不做无依据脑补。
 
-### Persona evidence
+### Persona 侧证据
 
-- repeated phrases
-- questioning patterns
-- tone and sentence rhythm
-- reactions under pressure
-- how disagreement is expressed
-- behavior toward managers, peers, and reports
+- 高频词和口头禅
+- 提问方式和打断方式
+- 句子节奏和语气
+- 压力下的反应
+- 如何表达反对
+- 对上、对平级、对下的行为差异
 
-### Work evidence
+### Work 侧证据
 
-- task intake habits
-- review criteria
-- decision rules
-- process expectations
-- output structure
-- operating checklists
+- 接任务时先看什么
+- 评审时抓什么
+- 如何做决策
+- 如何组织流程
+- 输出物长什么样
+- 复盘和闭环怎么做
 
-### Confidence labels
+### 置信度标签
 
-Each extracted observation should be tagged with a confidence level:
+每条观察最好标一个置信度：
 
-- high: directly supported by repeated or explicit evidence
-- medium: clearly supported once, but not yet repeated
-- low: plausible inference that should not become a stable rule yet
+- 高：有明确证据，且多次出现
+- 中：单次证据明确，但还没重复出现
+- 低：合理推断，但暂时不能升格为稳定规则
 
 ## 3. History Memory
 
-Before updating the stable layer, write a history-memory file per source or session.
+不要拿原始材料直接去更新最终 Prompt。
 
-History memory has two jobs:
+应该先写一层 `history memory`，作为原始证据和稳定资产之间的缓冲层。
 
-1. Preserve evidence without over-compressing it.
-2. Create a safe staging area before stable rules are updated.
+它有两个作用：
 
-Recommended contents:
+1. 先保留证据，避免过早压缩。
+2. 为后续稳定规则的提炼提供统一中间格式。
 
-- source metadata
-- sanitized background
-- 2-5 high-value cases
-- key quotes or phrasing
-- abstracted method points
-- a fixed-dimension summary for later merging
+建议结构：
 
-Use [templates/history-memory.md](../templates/history-memory.md).
+- 来源信息
+- 脱敏后的背景
+- 2 到 5 个高价值案例
+- 关键原句或表达方式
+- 抽象方法点
+- 固定维度摘要
+
+对应模板见 [templates/history-memory.md](../templates/history-memory.md)。
 
 ## 4. Stable Assets
 
-Only repeated, durable patterns should move into stable assets.
+只有重复出现、可稳定复用的模式，才应该进入稳定资产层。
 
 ### `persona.md`
 
-Should contain:
+适合沉淀：
 
-- core behavior rules
-- tone and expression patterns
-- decision and disagreement style
-- relationship behavior
-- boundaries and red lines
+- 核心行为规则
+- 说话方式
+- 关系处理方式
+- 决策和反对风格
+- 红线和边界
 
 ### `work.md`
 
-Should contain:
+适合沉淀：
 
-- scope and responsibility boundaries
-- work intake and review flow
-- output templates
-- prioritization rules
-- operational heuristics
+- 职责边界
+- 接任务和评审流程
+- 输出模板
+- 优先级规则
+- 操作型经验知识
 
-### Optional `master-prompt.md`
+### 可选 `master-prompt.md`
 
-Useful when you need a compact execution surface for an agent, but it should be downstream of `persona.md` and `work.md`, not a replacement for them.
+只有在 `persona.md` 和 `work.md` 都已经稳定后，才建议生成压缩版执行面。
 
-## 5. Merge Logic
+它应该是下游产物，不应该代替前两层。
 
-When new material arrives:
+## 5. Merge 逻辑
 
-- append new evidence to history memory
-- compare against existing stable rules
-- add new stable patterns only when evidence is repeated or clearly confirmed
-- surface conflicts instead of silently overwriting
+当新材料进入时：
 
-Never overwrite a stable rule just because a single new source sounds different.
+- 先写入新的 `history memory`
+- 再与当前稳定资产对比
+- 新模式只有在重复出现或被明确确认时，才晋升
+- 冲突要暴露出来，不能悄悄覆盖
 
-## 6. Correction Loop
+不要因为一份新材料口径不同，就直接改掉既有稳定规则。
 
-User corrections should be captured structurally:
+## 6. Correction 循环
 
-- scene
-- wrong behavior
-- correct behavior
-- target file: persona or work
-- whether it overrides or only refines an existing rule
+用户纠正必须结构化记录：
 
-Corrections should update the stable layer and be archived as a change event.
+- 场景
+- 错误行为
+- 正确行为
+- 应写入 `persona.md` 还是 `work.md`
+- 是覆盖旧规则，还是只补充边界
 
-Use [templates/correction.md](../templates/correction.md).
+Correction 应该进入稳定层，并作为一次正式更新事件被归档。
+
+模板见 [templates/correction.md](../templates/correction.md)。
 
 ## 7. Versioning
 
-Every stable update should produce:
+每次稳定层更新，都建议带上：
 
-- a version label
-- a short update summary
-- archived previous files
-- a rollback path
+- 版本号
+- 更新摘要
+- 旧版本归档
+- 回滚路径
 
-The goal is not only traceability. It is preventing drift.
+版本管理的意义不只是追溯，更是防止人物画像逐步漂移。
 
 ## 8. Public Export
 
-Public export is a separate stage, not a visibility toggle.
+公开导出是单独的一步，不是直接把私有 Skill 改成 public。
 
-Public output should include:
+公开仓库应该包含：
 
-- methodology
-- templates
-- generic examples
-- sanitization rules
+- 方法论
+- 模板
+- 泛化后的例子
+- 脱敏规则
 
-Public output should exclude:
+公开仓库不应该包含：
 
-- real names
-- employer or client names
-- internal product names
-- internal shorthand
-- local file paths
-- exact sensitive figures
-- distinctive quotes that can identify the subject
+- 真实人名
+- 公司或客户名
+- 产品名
+- 内部黑话
+- 本地路径
+- 精确敏感数字
+- 可直接识别人物的原话
 
-See [Sanitization](sanitization.md).
+详细规则见 [脱敏规则](sanitization.md)。

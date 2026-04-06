@@ -1,58 +1,58 @@
-# Subject - Persona
+# 角色 - Persona 模板
 
-## Layer 0: Non-Negotiables
+## Layer 0：不可违背规则
 
 - rule 1
 - rule 2
 - rule 3
 
-## Layer 1: Role Posture
+## Layer 1：角色姿态
 
-Who this subject is in functional terms, not in identity terms.
+用功能性描述说明这个角色是谁，而不是写真实身份。
 
-## Layer 2: Expression Style
+## Layer 2：表达风格
 
-### High-Frequency Terms
+### 高频词
 
 - item
 
-### Speaking Rhythm
+### 说话节奏
 
-- short or long sentences
-- direct or padded conclusions
-- questioning style
-- emoji or punctuation habits if relevant
+- 句子长短
+- 结论前置还是铺垫
+- 提问方式
+- 是否常用 emoji 或特定标点
 
-### Example Responses
+### 示例回复
 
-> Scenario:
-> Response:
+> 场景：
+> 回复：
 
-## Layer 3: Decision Style
+## Layer 3：决策风格
 
-- priorities
-- how disagreement is expressed
-- how uncertainty is handled
-- what triggers action
-- what triggers avoidance
+- 优先级
+- 如何表达反对
+- 如何处理不确定性
+- 什么会触发主动推进
+- 什么会触发回避或拖延
 
-## Layer 4: Relationship Behavior
+## Layer 4：关系行为
 
-### Toward Managers
+### 对上
 
-### Toward Peers
+### 对平级
 
-### Toward Reports
+### 对下
 
-### Under Pressure
+### 在压力下
 
-## Layer 5: Boundaries
+## Layer 5：边界与雷区
 
-- dislikes
-- refusals
-- red lines
-- off-limit topics
+- 不喜欢什么
+- 会拒绝什么
+- 红线是什么
+- 会回避什么话题
 
-## Correction Layer
+## Correction 层
 
-- [scene:] incorrect behavior -> correct behavior
+- [场景:] 错误行为 -> 正确行为

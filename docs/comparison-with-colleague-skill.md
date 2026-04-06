@@ -1,93 +1,97 @@
-# Comparison With `colleague-skill`
+# 与 `colleague-skill` 的方法对比
 
-Reference repository: [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill)
+参考仓库：[`titanwings/colleague-skill`](https://github.com/titanwings/colleague-skill)
 
-This file does not repeat that repository. It isolates the methodological gap.
+这份文档不复述它做了什么，而是只说明方法差异。
 
-## What `colleague-skill` Already Does Well
+## `colleague-skill` 已经做得好的部分
 
-From its prompt and tool layout, `colleague-skill` already provides:
+从它的 prompts 和 tools 结构来看，`colleague-skill` 已经具备这些关键层：
 
-- an intake stage
-- separate `persona` and `work` analyzers
-- separate builders for final assets
-- a correction handler
-- incremental merge logic
-- version management
-- multiple collectors and parsers for chat and mail style sources
+- intake
+- `persona` / `work` 双 analyzer
+- `persona` / `work` 双 builder
+- correction handler
+- incremental merge
+- version manager
+- 面向聊天、邮件等材料的 collector / parser
 
-That is a strong asset-building pipeline.
+这已经是一条完整的“人物 Skill 生产线”。
 
-## What A Transcript-Centered Method Adds
+## 以录音和长对话为主的场景，还缺什么
 
-If your strongest raw material is transcripts or meeting records, there are four missing layers that should be made explicit:
+如果你的核心材料是会议转写、长对话、指导性录音，那么还需要显式补四层。
 
-### 1. History Memory Between Raw Material And Stable Assets
+### 1. Raw Material 和 Stable Assets 中间的 `history memory`
 
-`colleague-skill` goes from source analysis toward stable files quickly.
+`colleague-skill` 更快地把原材料推向稳定文件。
 
-A transcript-centered method benefits from an intermediate memory layer:
+但在 transcript-first 场景里，最好先有一层中间记忆：
 
-- one memory file per meeting or source
-- evidence preserved before full compression
-- case-level structure instead of only final traits
+- 每份会议或材料一份记忆文件
+- 在完全压缩前保留证据
+- 用案例级结构承载内容，而不是直接只剩最终结论
 
-### 2. Confidence Management
+### 2. 置信度管理
 
-Transcripts are noisy. Speaker labels, ASR quality, and context can all be wrong.
+录音和转写材料天然会有噪声：
 
-A stronger method should mark:
+- 说话人标签可能错
+- ASR 可能错
+- 上下文可能缺
 
-- explicit evidence
-- inferred evidence
-- low-confidence evidence that should not yet become a stable rule
+因此更强的方法应该显式标注：
 
-### 3. Mandatory Sanitization For Public Export
+- 明确证据
+- 推断证据
+- 低置信度内容，暂不晋升稳定规则
 
-`colleague-skill` is optimized for building a person skill.
+### 3. 面向公开发布的强制脱敏层
 
-A public methodology repo needs an additional layer:
+`colleague-skill` 的目标更像“生成人物 Skill”。
 
-- a rule set for stripping identity
-- a public-only export pack
-- examples that preserve method but not fingerprint
+如果目标是“公开方法而不公开人物”，还必须补一层：
 
-### 4. Longitudinal Compression
+- 脱敏规则
+- 公私导出分离
+- 只保留方法、不保留人物指纹的示例
 
-Repeated meetings create recurring patterns.
+### 4. 长周期压缩与稳定规则晋升机制
 
-A stronger method should compress:
+连续多场会议会产生很多重复模式。
 
-- repeated principles
-- repeated questioning patterns
-- repeated review heuristics
+更强的方法应该能压缩：
 
-without discarding the evidence trail.
+- 重复原则
+- 重复提问方式
+- 重复评审习惯
 
-## What To Reuse
+同时保留证据来源，而不是直接把所有东西扁平化。
 
-If you are building a public-safe variant, keep these ideas from `colleague-skill`:
+## 应该复用什么
 
-- `persona` / `work` separation
-- analyzer vs builder separation
-- correction as structured data
-- merge with conflict prompts
-- version archive and rollback
+从 `colleague-skill` 值得直接复用的结构有：
 
-## What To Add
+- `persona` / `work` 双拆分
+- analyzer / builder 分层
+- correction 结构化处理
+- merge 时的冲突提示
+- version 归档与回滚
 
-Add these layers:
+## 应该补什么
 
-- transcript-aware history-memory template
-- confidence labels
-- sanitization checklist
-- public/private export split
-- stable-rule promotion rules
+如果你要做“老板类人物”的长周期提炼，建议额外补上：
 
-## Result
+- transcript-aware 的 `history-memory` 模板
+- 置信度标签
+- 脱敏清单
+- 公私导出分离
+- 稳定规则晋升标准
 
-The final public method becomes:
+## 最终推荐链路
+
+推荐方法链路是：
 
 `source intake -> evidence extraction -> history memory -> persona/work stable assets -> correction/versioning -> sanitized public export`
 
-That is the core pattern this repository publishes.
+这就是这个仓库公开的方法论核心。

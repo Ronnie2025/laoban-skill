@@ -1,6 +1,6 @@
-# History Memory Template
+# History Memory 模板
 
-## Source
+## 来源信息
 
 - source_type:
 - source_date:
@@ -8,49 +8,49 @@
 - sensitivity:
 - confidence_note:
 
-## Sanitized Background
+## 脱敏背景
 
-Short, identity-safe description of the situation.
+用不暴露身份的方式，简要说明这份材料的上下文。
 
-## Part A: High-Value Cases
+## Part A：高价值案例
 
 ### Case 1
 
 - scene:
-- what was being challenged:
-- questioning pattern:
-- expected answer:
-- operational method:
+- challenge:
+- questioning_pattern:
+- expected_answer:
+- operational_method:
 - evidence:
 - confidence:
 
 ### Case 2
 
 - scene:
-- what was being challenged:
-- questioning pattern:
-- expected answer:
-- operational method:
+- challenge:
+- questioning_pattern:
+- expected_answer:
+- operational_method:
 - evidence:
 - confidence:
 
-## Part B: Fixed-Dimension Summary
+## Part B：固定维度摘要
 
-1. logic preference
-2. decision mechanism
-3. risk mindset
-4. closure model
-5. role expectation
-6. process rigor
-7. quality vs efficiency tradeoff
-8. communication style
-9. value ordering
-10. recurring phrasing
+1. 逻辑偏好
+2. 决策机制
+3. 风险意识
+4. 闭环观
+5. 角色期待
+6. 过程规范
+7. 质量/效率权衡
+8. 沟通风格
+9. 价值排序
+10. 习惯性表达
 
-## Promotion Candidates
+## 可晋升稳定规则
 
-Patterns that may move into stable `persona.md`, `work.md`, or `master-prompt.md` after repeated confirmation.
+这些模式在后续重复出现时，可以考虑进入 `persona.md`、`work.md` 或 `master-prompt.md`。
 
-## Do Not Promote Yet
+## 暂不晋升
 
-Low-confidence, one-off, or identity-sensitive observations.
+低置信度、一次性、或容易暴露身份的观察先留在这里。

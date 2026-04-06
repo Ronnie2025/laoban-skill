@@ -1,4 +1,4 @@
-# Correction Template
+# Correction 模板
 
 - timestamp:
 - target_file: persona.md | work.md

@@ -1,76 +1,80 @@
-# Persona/Work Skill Methodology
+# 老板 Skill
 
-Public methodology for turning raw human materials into reusable skills without publishing private identity details.
+这是一个公开的“老板类人物 Skill 提炼方法论”仓库。
 
-This repository documents a generic process for:
+它公开的是方法，不公开任何真实老板、同事、公司、客户、产品、路径或内部语料。
 
-- ingesting raw materials such as transcripts, chat logs, notes, and docs
-- extracting evidence-backed behavior and work patterns
-- splitting output into `persona` and `work` layers
-- maintaining an incremental correction and version loop
-- exporting a public-safe methodology without leaking names, companies, paths, or private context
+这套方法论用于把原始人物材料整理成可复用的 AI Skill，同时把“私有画像”和“公开方法”彻底分开。
 
-## Why This Exists
+## 这套方法解决什么问题
 
-Most "act like this person" assets fail in one of two ways:
+很多“模仿某个人”的 Prompt 或 Skill，会在两个方向上出问题：
 
-1. They are vivid but not grounded in evidence.
-2. They are grounded in evidence but publish too much private detail.
+1. 写得像，但没有证据基础，容易漂移。
+2. 有证据基础，但把真实人物信息一起公开了。
 
-This methodology is designed to avoid both failures.
+这套方法的目标就是同时避免这两个问题。
 
-## Core Principles
+## 核心原则
 
-1. Evidence first
-   Every stable conclusion should be traceable to raw material or explicitly marked as an inference.
-2. Split persona from work
-   Communication patterns and role behavior belong in different files from process rules and domain work habits.
-3. Build a longitudinal memory layer
-   Do not update the final prompt directly from raw material every time. Insert a history-memory layer between raw evidence and stable assets.
-4. Separate stable patterns from one-off scenes
-   Preserve cases and quotes for evidence, but promote only repeated patterns into the stable layer.
-5. Treat correction as a first-class input
-   User corrections are not comments. They are model-shaping data.
-6. Sanitize by default
-   Public export must remove names, orgs, products, internal shorthand, exact paths, and sensitive numbers.
-7. Public and private artifacts are different products
-   Private persona assets may exist, but public release should contain only the method, templates, and redaction rules.
+1. 证据优先
+   稳定结论必须能回溯到原始材料，或者明确标注为推断。
+2. Persona 和 Work 分开
+   人的表达习惯、关系行为，不能和工作方法、决策流程混写。
+3. 中间必须有历史记忆层
+   不要每次从原始材料直接改最终 Prompt，要先沉淀到中间记忆层。
+4. 先保留案例，再提炼稳定模式
+   案例和原句用于保真，稳定规则用于复用，二者不能混成一团。
+5. Correction 是正式输入，不是附言
+   用户纠正不是评论，而是模型塑形数据。
+6. 默认脱敏
+   公开导出时，必须删除名字、组织、产品、路径、内部缩写和敏感数字。
+7. 私有资产和公开仓库是两种产品
+   私有层可以有人物画像；公开层只能有方法、模板和脱敏规则。
 
-## Pipeline
+## 总体流程
 
-The recommended pipeline has six stages:
+推荐流程分六层：
 
 1. Intake
-   Normalize sources and classify what kind of material each source is.
+   接收原始材料并分类。
 2. Evidence Extraction
-   Extract behavior cases, quotes, work habits, terminology, and confidence signals.
+   抽取可证明的人物行为、表达习惯和工作模式。
 3. History Memory
-   Write one memory file per source or session to preserve evidence before compression.
+   先写一层中间记忆，保留证据，再做压缩。
 4. Stable Assets
-   Merge repeated patterns into `persona.md`, `work.md`, and optionally a `master-prompt.md`.
-5. Correction and Versioning
-   Add user corrections, detect conflicts, archive versions, and keep a rollback path.
+   把重复出现的稳定模式合并进 `persona.md`、`work.md`，必要时再生成 `master-prompt.md`。
+5. Correction & Versioning
+   处理纠正、冲突、版本归档和回滚。
 6. Public Export
-   Export only methodology, templates, and redaction-safe examples.
+   最后只公开方法、模板和脱敏后的示例。
 
-Detailed guidance:
+详细说明见：
 
-- [Pipeline](docs/pipeline.md)
-- [Sanitization](docs/sanitization.md)
-- [Comparison With `colleague-skill`](docs/comparison-with-colleague-skill.md)
+- [流程设计](docs/pipeline.md)
+- [脱敏规则](docs/sanitization.md)
+- [与 `colleague-skill` 的方法对比](docs/comparison-with-colleague-skill.md)
 
-## What To Keep From `colleague-skill`
+## 这套方法保留了什么
 
-The public repository [titanwings/colleague-skill](https://github.com/titanwings/colleague-skill) is strong in four places:
+参考公开仓库 [`titanwings/colleague-skill`](https://github.com/titanwings/colleague-skill)，这套方法保留了其中最重要的几个结构优点：
 
-- explicit `persona` / `work` split
-- separate analyzer and builder stages
-- correction handling
-- version management
+- `persona` / `work` 双拆分
+- analyzer / builder 分层
+- correction 结构化处理
+- merge 冲突提示
+- version 管理与回滚
 
-This methodology keeps those strengths and adds a transcript-first memory layer plus a stricter public-export boundary.
+## 这套方法补了什么
 
-## Repository Layout
+如果你的原始材料以录音转写、会议纪要、长对话为主，那么还需要补四层：
+
+- transcript-first 的 `history memory`
+- 置信度管理
+- 强制脱敏与公开导出边界
+- 长周期压缩与稳定规则晋升机制
+
+## 仓库结构
 
 ```text
 .
@@ -87,28 +91,28 @@ This methodology keeps those strengths and adds a transcript-first memory layer 
     └── work.md
 ```
 
-## When To Use This Method
+## 适用场景
 
-Use this method when you need to:
+适合用于：
 
-- distill a manager, colleague, founder, operator, or domain expert into reusable AI behavior
-- keep a durable private corpus while publishing only the framework
-- continuously update the asset from new meetings or chats
-- preserve evidence quality instead of writing a single large prompt
+- 从录音、聊天、邮件、文档中提炼老板/同事/创始人/专家型人物 Skill
+- 长期维护一个私有人物语料库，但只公开方法论
+- 持续吸收新增会议或对话材料
+- 把“像某个人”做成可维护的资产，而不是一次性 Prompt
 
-## When Not To Use It
+## 不适用场景
 
-Do not use this method if:
+不适合用于：
 
-- you only need a one-off roleplay prompt
-- you have no raw evidence and only vague impressions
-- the public output is expected to contain real identities or internal details
+- 只想临时写一个角色扮演 Prompt
+- 没有原始材料，只有模糊印象
+- 打算直接公开真实人物画像
 
-## Start Point
+## 使用起点
 
-If you are building this from scratch:
+如果你想从零开始：
 
-1. Start with [templates/history-memory.md](templates/history-memory.md).
-2. Promote repeated patterns into [templates/persona.md](templates/persona.md) and [templates/work.md](templates/work.md).
-3. Add corrections through [templates/correction.md](templates/correction.md).
-4. Export a public-safe summary only after applying [Sanitization](docs/sanitization.md).
+1. 先用 [templates/history-memory.md](templates/history-memory.md) 承接每一份原始材料。
+2. 再把重复出现的稳定模式提升到 [templates/persona.md](templates/persona.md) 和 [templates/work.md](templates/work.md)。
+3. 用户纠正统一走 [templates/correction.md](templates/correction.md)。
+4. 对外发布前，必须过一遍 [脱敏规则](docs/sanitization.md)。
